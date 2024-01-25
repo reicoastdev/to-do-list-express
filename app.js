@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const methodOverride = require("method-override");
 const checklistRouter = require("./src/routes/checklist");
 const rootRouter = require("./src/routes/index");
 
@@ -10,6 +11,7 @@ require("./config/database");
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method", { methods: ["POST", "GET"] }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // routes
