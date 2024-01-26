@@ -51,7 +51,7 @@ router.put("/:id", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const checklist = await Checklist.findById(req.params.id);
+    const checklist = await Checklist.findById(req.params.id).populate("tasks");
     res.status(200).render("checklists/show", { checklist: checklist });
   } catch (err) {
     res
